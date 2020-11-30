@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Movie;
 use Illuminate\Http\Request;
+use Auth;
 
 class MovieController extends Controller
 {
@@ -90,7 +91,6 @@ class MovieController extends Controller
      */
     public function get(Movie $movie)
     {
-
         if ($movie) {
              return response()->json([
                  'message' => 'Registro consultado correctamente',
@@ -115,28 +115,30 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
+        if (Auth::user()->hasPermissionTo('update movies')) { 
+                if ($movie) {
+                     if ($movie->update($request->all())) {
 
-        if ($movie) {
-             if ($movie->update($request->all())) {
+                          if ($request->hasFile('cover_file')) {
 
-                  if ($request->hasFile('cover_file')) {
+                              $file = $request->file('cover_file');
+                             $file_name = 'cover_movie'.$movie->id.'.'.$file->getClientOriginalExtension();
 
-                      $file = $request->file('cover_file');
-                     $file_name = 'cover_movie'.$movie->id.'.'.$file->getClientOriginalExtension();
+                              $path = $request->file('cover_file')->storeAs(
+                                 'img', $file_name
+                             );
 
-                      $path = $request->file('cover_file')->storeAs(
-                         'img', $file_name
-                     );
+                              $movie->cover = $file_name;
+                             $movie->save(); 
 
-                      $movie->cover = $file_name;
-                     $movie->save(); 
+                          }
 
-                  }
-
-                  return redirect()->back();
-             }
-         }
-         return redirect()->back();
+                          return redirect()->back();
+                     }
+                 }
+                 return redirect()->back();
+     }
+     return redirect()->back()->with('error','no tienes permisos');
         //
     }
 
@@ -146,8 +148,29 @@ class MovieController extends Controller
      * @param  \App\Models\Movie  $movie
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Movie $movie)
+    public function destroy(Request $request)
     {
+        if (Auth::user()->hasPermissionTo('delete movies')) { 
+        
+        $movie = Movie::find($request['id']);
+        if ($movie) {
+            if ($movie->delete()) {
+                return response()->json([
+                    'message' => 'Registro eliminado correctamente',
+                    'code' => '200',
+
+                ]);
+            }
+        }
+
+        return response()->json([
+                'message' => 'No se pudo eliminar el registro',
+                'code' => '400',
+
+        ]);
+
+        }
+        return redirect()->back()->with('error','no tienes permisos');
         //
     }
 }

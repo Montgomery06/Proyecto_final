@@ -59,6 +59,10 @@
                             {{ __('Categories') }}
                         </x-jet-dropdown-link>
 
+                        <x-jet-dropdown-link href="{{ url('users') }}">
+                            {{ __('Users') }}
+                        </x-jet-dropdown-link>
+
                         @endif
 
                         @if (Laravel\Jetstream\Jetstream::hasApiFeatures())

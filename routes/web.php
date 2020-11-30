@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/contact','WebController@contact');
-Route::get('/users','MovieController@index')->name('movies');
+
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -33,9 +33,12 @@ Route::middleware(['auth'])->group(function(){
  	Route::get('/movies-info/{movie}','MovieController@get');
  	Route::post('/movies','MovieController@store');		 	
  	Route::put('/movies/{movie}','MovieController@update')->middleware('permission:crud categories');
+ 	Route::delete('/movies','MovieController@destroy');
 	Route::get('/categories','CategoryController@index');
 	Route::put('/categories','CategoryController@update');
 	Route::post('/categories','CategoryController@store');
 	Route::delete('/categories','CategoryController@destroy');
+	Route::get('/users','UserController@index')->name('users');
+
 
 });
