@@ -1,0 +1,54 @@
+[{
+	        "title": "Pelicula 1",
+            "classification": "A",
+            "minutes": "131",
+            "year": "2014",
+            "description": "",
+            "cover": "movie.png",
+            "trailer": "",
+            "category_id": "1"
+},
+
+{
+            "title": "Pelicula 2",
+            "classification": "A",
+            "minutes": "131",
+            "year": "2014",
+            "description": "",
+            "cover": "movie.png",
+            "trailer": "",
+            "category_id": "1"
+},
+
+{
+            "title": "Pelicula 3",
+            "classification": "B",
+            "minutes": "131",
+            "year": "2014",
+            "description": "",
+            "cover": "movie.png",
+            "trailer": "",
+            "category_id": "1"
+},
+
+{
+            "title": "Pelicula 4",
+            "classification": "C",
+            "minutes": "131",
+            "year": "2014",
+            "description": "",
+            "cover": "movie.png",
+            "trailer": "",
+            "category_id": "1"
+},
+
+{
+		"title": "Pelicula x",
+            "classification": "A",
+            "minutes": "131",
+            "year": "2014",
+            "description": "",
+            "cover": "movie.png",
+            "trailer": "",
+            "category_id": "1"
+}]
