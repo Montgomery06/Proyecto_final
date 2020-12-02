@@ -34,13 +34,16 @@ Route::middleware(['auth'])->group(function(){
  	Route::post('/movies','MovieController@store');		 	
  	Route::put('/movies/{movie}','MovieController@update');
  	Route::delete('/movies','MovieController@destroy');
-	Route::get('/categories','CategoryController@index');
+
+	Route::get('/categories','CategoryController@index')->middleware('permission:crud categories');
 	Route::put('/categories','CategoryController@update');
 	Route::post('/categories','CategoryController@store');
 	Route::delete('/categories','CategoryController@destroy');
 
 	Route::get('/users','UserController@index')->name('users');
 	Route::post('/users','UserController@store');
+	Route::put('/users','UserController@update');
+	Route::delete('/users','UserController@destroy');
 
 
 });

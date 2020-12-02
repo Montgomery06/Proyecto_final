@@ -41,6 +41,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        if (Auth::user()->hasPermissionTo('view clients')) {
         $passAux = $request->password; 
         $request->merge([
         'password' => bcrypt($passAux),
@@ -50,6 +51,9 @@ class UserController extends Controller
             return redirect()->back()->with('success','El registro se ha creado correctamente');
         }
         return redirect()->back()->with('error','No se pudo crear el registro');
+
+        }
+        return redirect()->back()->with('error','no tienes permisos');
         //
     }
 
@@ -82,8 +86,26 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
+
+        if (Auth::user()->hasPermissionTo('update clients')) {
+
+        $passAux = $request->password; 
+        $request->merge([
+        'password' => bcrypt($passAux),
+        ]);    
+
+        $user = User::find($request['id']);
+         if ($user) {
+             if ($user->update($request->all())) {
+
+                  return redirect()->back()->with('success','El registro se ha actualizado correctamente');;
+             }
+         }
+
+        }
+        return redirect()->back()->with('error','no tienes permisos');
         //
     }
 
@@ -93,8 +115,29 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
+
+        if (Auth::user()->hasPermissionTo('delete clients')) {
+            $user = User::find($request['id']);
+            if ($user) {
+                if ($user->delete()) {
+                    return response()->json([
+                        'message' => 'Registro eliminado correctamente',
+                        'code' => '200',
+
+                    ]);
+                }
+            }
+
+            return response()->json([
+                    'message' => 'No se pudo eliminar el registro',
+                    'code' => '400',
+
+            ]);
+
+        }
+        return redirect()->back()->with('error','no tienes permisos');
         //
     }
 }

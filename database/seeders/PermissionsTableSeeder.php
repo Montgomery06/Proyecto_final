@@ -20,7 +20,7 @@ class PermissionsTableSeeder extends Seeder
         //
 
         // categories
-    	 Permission::create(['name' => 'categories']);
+    	 Permission::create(['name' => 'crud categories']);
 
     	// movies
     	Permission::create(['name' => 'view movies']);
@@ -42,6 +42,7 @@ class PermissionsTableSeeder extends Seeder
 
 
     	$admin->givePermissionTo([
+            'crud categories'
     		'view movies',
     		'add movies',
     		'update movies',

@@ -204,7 +204,7 @@
      	function remove(id){
      		swal({
 				  title: "Are you sure?",
-				  text: "Once deleted, you will not be able to recover this imaginary file!",
+				  text: "Once deleted, you will not be able to recover this!",
 				  icon: "warning",
 				  buttons: true,
 				  dangerMode: true,
@@ -222,11 +222,9 @@
 						console.log(response.data)
 					});
 				  } else {
-				    swal("Your imaginary file is safe!");
+				    swal("Your file is safe!");
 				  }
 				});
-
-				console.log(id)
      	}
      </script>
     </x-slot>

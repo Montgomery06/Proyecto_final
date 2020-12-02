@@ -70,7 +70,7 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+	        <h5 class="modal-title" id="staticBackdropLabel">Add movie</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -399,7 +399,7 @@
  		function remove(id){
      		swal({
 				  title: "Are you sure?",
-				  text: "Once deleted, you will not be able to recover this imaginary file!",
+				  text: "Once deleted, you will not be able to recover this!",
 				  icon: "warning",
 				  buttons: true,
 				  dangerMode: true,
@@ -417,7 +417,7 @@
 						console.log(response.data)
 					});
 				  } else {
-				    swal("Your imaginary file is safe!");
+				    swal("Your file is safe!");
 				  }
 				});
 
