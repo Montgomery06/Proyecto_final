@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Auth;
 
 class UserController extends Controller
 {
@@ -14,8 +15,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::all(); 
-        return view('users.index',compact('users'));
+        if (Auth::user()->hasPermissionTo('view clients')) {
+            $users = User::all(); 
+            return view('users.index',compact('users'));
+        }
+        return redirect()->back()->with('error','no tienes permisos');
         //
     }
 
@@ -37,6 +41,15 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        $passAux = $request->password; 
+        $request->merge([
+        'password' => bcrypt($passAux),
+        ]);
+
+        if ($user = User::create($request->all())) {
+            return redirect()->back()->with('success','El registro se ha creado correctamente');
+        }
+        return redirect()->back()->with('error','No se pudo crear el registro');
         //
     }
 

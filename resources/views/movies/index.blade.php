@@ -7,7 +7,7 @@
         	</h2>
     	</div>
 			<div class="col-4">
-				<button class="btn btn-primary float-right" data-toggle="modal" data-target="#addMovie">
+				<button class="btn btn-secondary float-right" data-toggle="modal" data-target="#addMovie">
 					Add movie
 				</button>
 			</div>

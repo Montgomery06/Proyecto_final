@@ -8,7 +8,7 @@
         	</h2>
     	</div>
 			<div class="col-4">
-				<button class="btn btn-primary float-right" data-toggle="modal" data-target="#addCategory">
+				<button class="btn btn-secondary float-right" data-toggle="modal" data-target="#addCategory">
 					Add category
 				</button>
 			</div>
@@ -78,7 +78,7 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+	        <h5 class="modal-title" id="staticBackdropLabel">Edit category</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>
@@ -135,7 +135,7 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-header">
-	        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+	        <h5 class="modal-title" id="staticBackdropLabel">Add category</h5>
 	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 	          <span aria-hidden="true">&times;</span>
 	        </button>

@@ -19,7 +19,7 @@ class MovieController extends Controller
          if (Auth::user()->hasPermissionTo('view movies')) { 
 
  
-              $movies = Movie::with('category')->get(); 
+             $movies = Movie::with('category')->get(); 
              $categories = Category::all();
 
               return view('movies.index',compact('movies','categories'));
@@ -64,9 +64,9 @@ class MovieController extends Controller
 
                     }
 
-                    return redirect()->back();
+                    return redirect()->back()->with('success','El registro se ha creado correctamente');
                 }
-                return redirect()->back();
+                return redirect()->back()->with('error','No se pudo actualizar el registro');
         }
         return redirect()->back()->with('error','no tienes permisos');
         //
@@ -133,10 +133,10 @@ class MovieController extends Controller
 
                           }
 
-                          return redirect()->back();
+                          return redirect()->back()->with('success','El registro se ha creado correctamente');
                      }
                  }
-                 return redirect()->back();
+                 return redirect()->back()->with('error','No se pudo actualizar el registro');
      }
      return redirect()->back()->with('error','no tienes permisos');
         //
@@ -171,6 +171,7 @@ class MovieController extends Controller
 
         }
         return redirect()->back()->with('error','no tienes permisos');
+
         //
     }
 }
