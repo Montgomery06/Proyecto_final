@@ -42,7 +42,7 @@ class PermissionsTableSeeder extends Seeder
 
 
     	$admin->givePermissionTo([
-            'crud categories'
+            'crud categories',
     		'view movies',
     		'add movies',
     		'update movies',

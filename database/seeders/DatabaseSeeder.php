@@ -17,6 +17,8 @@ class DatabaseSeeder extends Seeder
         $this->call(MovieSeeder::class);
     	$this->call(UserTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
+        $this->call(LoansSeeder::class);
+
         // \App\Models\User::factory(10)->create();
         #php artisan db:seed
         #php artisan migrate:fresh --seed
