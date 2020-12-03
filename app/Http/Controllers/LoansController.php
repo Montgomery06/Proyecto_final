@@ -14,6 +14,11 @@ class LoansController extends Controller
      */
     public function index()
     {
+        if (Auth::user()->hasPermissionTo('view loans')) {
+            $loans = Loans::all(); 
+            return view('loans.index',compact('loans'));
+        }
+        return redirect()->back()->with('error','no tienes permisos');
         //
     }
 

@@ -49,6 +49,11 @@
                             {{ __('Profile') }}
                         </x-jet-dropdown-link>
 
+                        <x-jet-dropdown-link href="{{ route('loans') }}">
+                            {{ __('Loans') }}
+                        </x-jet-dropdown-link>
+
+
                         @if (Auth::user()->hasRole('Admin') ) 
 
                         <x-jet-dropdown-link href="{{ route('movies') }}">

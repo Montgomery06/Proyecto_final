@@ -16,4 +16,11 @@ class Loans extends Model
 	'loan_date',
 	'return_date', 
     ];
+
+    public function user(){
+
+     
+
+        return $this->belongsTo(User::class);
+    }
 }
