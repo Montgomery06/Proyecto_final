@@ -24,6 +24,7 @@
 				      <th scope="col">Title</th>
 				      <th scope="col">Classification</th>
 				      <th scope="col">Category</th>
+				      
 				      <th scope="col">Actions</th>
 				    </tr>
 				  </thead>
@@ -37,6 +38,7 @@
 				      <td> {{ $movie->title }} </td>
 				      <td> {{ $movie->classification }} </td>
 				      <td> {{ $movie->category->name }} </td>
+
 				      <td>
 				      	<div class="btn-group" role="group" aria-label="Button group with nested dropdown"> 
 

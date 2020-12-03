@@ -19,8 +19,9 @@ class CreateLoansTable extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedBigInteger('movie_id');
             $table->foreign('movie_id')->references('id')->on('movies')->onDelete('cascade');
-            $table->dateTime('loan_date');
-            $table->dateTime('return_date');
+            $table->dateTime('loan_date')->nullable();
+            $table->dateTime('return_date')->nullable();
+            $table->string('status')->default('Prestado');
             $table->timestamps();
         });
     }

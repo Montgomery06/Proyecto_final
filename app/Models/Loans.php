@@ -15,12 +15,16 @@ class Loans extends Model
 	'movie_id',
 	'loan_date',
 	'return_date', 
+    'status'
     ];
 
     public function user(){
 
-     
-
         return $this->belongsTo(User::class);
+    }
+
+    public function movie(){
+
+        return $this->belongsTo(Movie::class);
     }
 }

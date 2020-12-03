@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Movie;
+use App\Models\Loans;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -21,6 +22,7 @@ class MovieController extends Controller
  
              $movies = Movie::with('category')->get(); 
              $categories = Category::all();
+             
 
               return view('movies.index',compact('movies','categories'));
 

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movie;
+use App\Models\User;
 use App\Models\Loans;
 use Illuminate\Http\Request;
+use Auth;
 
 class LoansController extends Controller
 {
@@ -15,8 +18,12 @@ class LoansController extends Controller
     public function index()
     {
         if (Auth::user()->hasPermissionTo('view loans')) {
+
+            $users = User::all();
+            $movies = Movie::all();  
             $loans = Loans::all(); 
-            return view('loans.index',compact('loans'));
+
+            return view('loans.index',compact('loans','users','movies'));
         }
         return redirect()->back()->with('error','no tienes permisos');
         //
@@ -72,7 +79,7 @@ class LoansController extends Controller
      * @param  \App\Models\Loans  $loans
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Loans $loans)
+    public function update(Request $request)
     {
         //
     }
@@ -83,7 +90,7 @@ class LoansController extends Controller
      * @param  \App\Models\Loans  $loans
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Loans $loans)
+    public function destroy(Request $request)
     {
         //
     }

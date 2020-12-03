@@ -31,6 +31,7 @@
                       <th scope="col">Movie</th>
                       <th scope="col">Loan</th>
                       <th scope="col">Return</th>
+                      <th scope="col">Status</th>
                       <th scope="col">Actions</th>
                     </tr>
                   </thead>
@@ -46,6 +47,7 @@
                       <td> {{ $loan->movie_id }} </td>
                       <td> {{ $loan->loan_date }} </td>
                       <td> {{ $loan->return_date }} </td>
+                      <td> {{ $loan->status }} </td>
                       <td>
 
                         
@@ -56,13 +58,15 @@
                               Actions
                             </button>
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                              <a onclick="" data-toggle="modal" data-target="#editUser" class="dropdown-item" href="#">
+                              <a onclick="" data-toggle="modal" data-target="#editLoan" class="dropdown-item" href="#">
                                 Edit
                               </a>
                                <a onclick=""  class="dropdown-item" href="#">
                                 Remove
                               </a>
-                              
+                              <a onclick=""  class="dropdown-item" href="#">
+                                Return
+                              </a>
                             </div>
                           </div>
                         </div>
@@ -78,6 +82,77 @@
         </div>
     </div>
 
+    <div class="modal fade" id="addLoan" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="staticBackdropLabel">Add loan</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <form method="post" action="{{ url('loans') }}" >
+          @csrf
+      
+
+         <div class="modal-body">
+            
+         <div class="form-group">
+            <label for="exampleInputEmail1">
+              User
+            </label>
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">@</span>
+            </div>
+            <select class="form-control" name="user_id">
+              @if (isset($users) && count($users)>0)
+              @foreach ($users as $user)
+
+              <option value="{{ $user->id }}"> {{ $user->name }}</option>
+
+              @endforeach
+              @endif
+            </select>
+          </div>
+         </div>
+
+         <div class="form-group">
+            <label for="exampleInputEmail1">
+              Movie
+            </label>
+            <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">@</span>
+            </div>
+            <select class="form-control" name="movie_id">
+              @if (isset($movies) && count($movies)>0)
+              @foreach ($movies as $movie)
+
+              <option value="{{ $movie->id }}"> {{ $movie->title }}</option>
+
+              @endforeach
+              @endif
+            </select>
+          </div>
+         </div>
+
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">
+              Cancel
+            </button>
+            <button type="submit" class="btn btn-primary">
+              Update data
+            </button>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </div> 
     
 
 
@@ -85,6 +160,7 @@
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
      <script type="text/javascript">
+
 
 
 
