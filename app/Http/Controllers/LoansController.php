@@ -47,6 +47,15 @@ class LoansController extends Controller
      */
     public function store(Request $request)
     {
+         if (Auth::user()->hasPermissionTo('add loans')) {
+
+        if ($loans = Loans::create($request->all())) {
+            return redirect()->back()->with('success','El registro se ha creado correctamente');
+
+        }return redirect()->back()->with('error','No se pudo crear el registro');
+
+        }
+        return redirect()->back()->with('error','no tienes permisos');
         //
     }
 
@@ -81,6 +90,17 @@ class LoansController extends Controller
      */
     public function update(Request $request)
     {
+        if (Auth::user()->hasPermissionTo('update loans')) {
+        $loans = Loans::find($request['id']);
+        if ($loans) {
+             if ($loans->update($request->all())) {
+
+                  return redirect()->back()->with('success','El registro se ha actualizado correctamente');;
+             }
+         }
+         return redirect()->back()->with('error','No se pudo actualizar el registro');
+        }
+        return redirect()->back()->with('error','no tienes permisos');
         //
     }
 
@@ -92,6 +112,25 @@ class LoansController extends Controller
      */
     public function destroy(Request $request)
     {
+        if (Auth::user()->hasPermissionTo('delete loans')) {
+            $loans = Loans::find($request['id']);
+            if ($loans) {
+                if ($loans->delete()) {
+                    return response()->json([
+                        'message' => 'Registro eliminado correctamente',
+                        'code' => '200',
+
+                    ]);
+                }
+            }
+
+            return response()->json([
+                    'message' => 'No se pudo eliminar el registro',
+                    'code' => '400',
+
+            ]);
+        }
+        return redirect()->back()->with('error','no tienes permisos');
         //
     }
 }
