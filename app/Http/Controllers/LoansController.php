@@ -19,9 +19,10 @@ class LoansController extends Controller
     {
         if (Auth::user()->hasPermissionTo('view loans')) {
 
+
             $users = User::all();
             $movies = Movie::all();  
-            $loans = Loans::all(); 
+            $loans = Loans::with('user','movie')->get(); 
 
             return view('loans.index',compact('loans','users','movies'));
         }
